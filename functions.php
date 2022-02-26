@@ -9,7 +9,6 @@ function kahoycrafts_load_widget() {
 }
 
 add_action( 'widgets_init', 'kahoycrafts_load_widget' );
-
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles' );
 
 function kahoy_crafts_styles() {
