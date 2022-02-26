@@ -77,6 +77,7 @@ function woo_change_breadcrumb_home_test($defaults) {
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
 
 add_filter( 'woocommerce_breadcrumb_home_url', 'woo_custom_breadrumb_home_url' );
+
  /*Change the breadcrumb home link URL from / to /shop.
  @return string New URL for Home link item. / */
 function woo_custom_breadrumb_home_url() { 
