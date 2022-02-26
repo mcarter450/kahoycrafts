@@ -10,6 +10,8 @@
 		    autoplay: true,
 		    animateIn: 'fadeIn',
             animateOut: 'fadeOut',
+            lazyLoad: true,
+    		responsiveClass:true,
 		    responsive:{
 		        0:{
 		            items: 1

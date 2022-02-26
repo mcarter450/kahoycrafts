@@ -74,6 +74,24 @@
 	opacity: .9;
 }
 
+@media only screen and (max-width: 481px) {
+
+	.owl-theme .owl-nav {
+		display: none;
+	}
+
+	.owl-carousel:hover .owl-nav .owl-prev,
+	.owl-carousel:hover .owl-nav .owl-next {
+		display: none;
+	}
+
+	.owl-theme .owl-nav .owl-prev,
+	.owl-theme .owl-nav .owl-next {
+		left: 0;
+	}
+
+}
+
 .owl-theme .owl-dots {
 	height: 40px;
 	line-height: 40px;
