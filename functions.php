@@ -97,7 +97,6 @@ function kahoycrafts_disable_sitemap_specific_page($args, $post_type) {
 	
 	$args['post__not_in'] = isset($args['post__not_in']) ? $args['post__not_in'] : [];
 
-
 	$args['post__not_in'][] = 70;
 	$args['post__not_in'][] = 71;
 	$args['post__not_in'][] = 72; // exclude page with ID = 72
