@@ -81,36 +81,36 @@ add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
  */
 add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 	
-	if ( $handle == 'fontawesome' ) {
+	if ( $handle == 'fontawesome' || 
+		 $handle == 'wpforms-mailcheck' || 
+		 $handle == 'wpforms-punycode' ) {
 		
 		return str_replace( ' src', ' async src', $tag );
 	}
 
-	if ( stripos($handle, 'wpforms') !== false || 
+	if ( $handle == 'wpforms' || 
+		 $handle == 'wpforms-validation' || 
 		 $handle == 'owl-carousel' || 
-		 $handle == 'kahoycrafts'  ||
+		 $handle == 'kahoycrafts'  || 
 		 $handle == 'cookie-consent' || 
-		 $handle == 'cookie-consent-banner' ||
-		 $handle == 'flexible_shipping_notices' ) {
+		 $handle == 'cookie-consent-banner' ) {
 		
 		return str_replace( ' src', ' defer src', $tag );
 	}
 
-	// wc-add-to-cart
-	if ( is_front_page() && (
+	// WooCommerce
+	if ( is_front_page() && ( 
 			$handle == 'wc-cart-fragments' || 
 			$handle == 'wc-add-to-cart' || 
 			$handle == 'woocommerce' || 
 			$handle == 'js-cookie'
 		) ) {
 
-		return str_replace( ' src', ' defer src', $tag );
+		return str_replace( ' src', ' async src', $tag );
 	}
 
 	return $tag;
-
-	//return str_replace( ' src', ' defer src', $tag ); // defer the script
-	//return str_replace( ' src', ' async src', $tag ); // OR async the script
+	
 	//return str_replace( ' src', ' async defer src', $tag ); // OR do both!
 
 }, 10, 2 );
