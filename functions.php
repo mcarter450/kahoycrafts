@@ -81,17 +81,17 @@ add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
  */
 add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 	
-	if ( stripos($handle, 'wpforms') !== false || 
-		 $handle == 'flexible_shipping_notices' ||
-		 $handle == 'fontawesome' ) {
+	if ( $handle == 'fontawesome' ) {
 		
 		return str_replace( ' src', ' async src', $tag );
 	}
 
-	if ( $handle == 'owl-carousel' || 
+	if ( stripos($handle, 'wpforms') !== false || 
+		 $handle == 'owl-carousel' || 
 		 $handle == 'kahoycrafts'  ||
 		 $handle == 'cookie-consent' || 
-		 $handle == 'cookie-consent-banner' ) {
+		 $handle == 'cookie-consent-banner' ||
+		 $handle == 'flexible_shipping_notices' ) {
 		
 		return str_replace( ' src', ' defer src', $tag );
 	}
