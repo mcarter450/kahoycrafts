@@ -76,6 +76,45 @@ function woo_change_breadcrumb_home_test($defaults) {
 
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
 
+/**
+ * Defer or async scripts
+ */
+add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+	
+	if ( stripos($handle, 'wpforms') !== false || 
+		 $handle == 'flexible_shipping_notices' ||
+		 $handle == 'fontawesome' ) {
+		
+		return str_replace( ' src', ' async src', $tag );
+	}
+
+	if ( $handle == 'owl-carousel' || 
+		 $handle == 'kahoycrafts'  ||
+		 $handle == 'cookie-consent' || 
+		 $handle == 'cookie-consent-banner' ) {
+		
+		return str_replace( ' src', ' defer src', $tag );
+	}
+
+	// wc-add-to-cart
+	if ( is_front_page() && (
+			$handle == 'wc-cart-fragments' || 
+			$handle == 'wc-add-to-cart' || 
+			$handle == 'woocommerce' || 
+			$handle == 'js-cookie'
+		) ) {
+
+		return str_replace( ' src', ' defer src', $tag );
+	}
+
+	return $tag;
+
+	//return str_replace( ' src', ' defer src', $tag ); // defer the script
+	//return str_replace( ' src', ' async src', $tag ); // OR async the script
+	//return str_replace( ' src', ' async defer src', $tag ); // OR do both!
+
+}, 10, 2 );
+
 add_filter( 'woocommerce_breadcrumb_home_url', 'woo_custom_breadrumb_home_url' );
 
  /*Change the breadcrumb home link URL from / to /shop.
@@ -141,4 +180,3 @@ add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event' );
  */
 add_filter( 'jetpack_sharing_counts', '__return_false', 99 );
 add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
-
