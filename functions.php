@@ -135,3 +135,10 @@ gtag('event', 'conversion', {
 
 //add_action( 'woocommerce_before_checkout_form', 'add_gtag_purchase_event' );
 add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event' );
+
+/**
+ * Disable unused jetpack CSS
+ */
+add_filter( 'jetpack_sharing_counts', '__return_false', 99 );
+add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
+
