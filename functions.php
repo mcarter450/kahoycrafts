@@ -12,11 +12,7 @@ add_action( 'widgets_init', 'kahoycrafts_load_widget' );
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles' );
 
 function kahoy_crafts_styles() {
-  wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri().'/style.css' );
-  wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/style.css', [], wp_get_theme()->get( 'Version' ) );
-  wp_enqueue_style( 'owl-carousel', get_stylesheet_directory_uri() . '/assets/css/owl.carousel.min.css', []);
-  wp_enqueue_style( 'owl-carousel-theme', get_stylesheet_directory_uri() . '/assets/css/owl.theme.default.min.css', []);
-  wp_enqueue_style( 'owl-overrides', get_stylesheet_directory_uri() . '/assets/css/owl-overrides.css', []);
+  wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/all.min.css', ['twenty-twenty-one-style'], wp_get_theme()->get( 'Version' ) );
 }
 
 /**
@@ -110,7 +106,7 @@ add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 	}
 
 	return $tag;
-	
+
 	//return str_replace( ' src', ' async defer src', $tag ); // OR do both!
 
 }, 10, 2 );
