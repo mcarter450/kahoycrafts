@@ -98,17 +98,19 @@
 }
 
 .owl-theme .owl-dots .owl-dot {
+
 	background-color: transparent !important;
-}
 
-.owl-theme .owl-dots .owl-dot span {
-	background: rgba(0,0,0,.5);
-}
+	span {
+		background: rgba(0,0,0,.5);
+	}
 
-.owl-theme .owl-dots .owl-dot.active span {
-	background: rgba(0,0,0,.9);
-}
+	&.active span {
+		background: rgba(0,0,0,.9);
+	}
 
-.owl-theme .owl-dots .owl-dot:focus {
-	outline: none;
+	&:focus {
+		outline: none;
+	}
+	
 }

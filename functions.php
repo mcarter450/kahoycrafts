@@ -9,10 +9,11 @@ function kahoycrafts_load_widget() {
 }
 
 add_action( 'widgets_init', 'kahoycrafts_load_widget' );
-add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles' );
+add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles', 11, 0);
 
 function kahoy_crafts_styles() {
-  wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/all.min.css', ['twenty-twenty-one-style'], wp_get_theme()->get( 'Version' ) );
+	wp_dequeue_style( 'twenty-twenty-one-style' );
+	wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
 }
 
 /**
@@ -31,7 +32,7 @@ function kahoy_crafts_scripts() {
 	);
 	wp_enqueue_script(
 		'kahoycrafts',
-		get_stylesheet_directory_uri() . '/assets/js/kahoycrafts.js',
+		get_stylesheet_directory_uri() . '/assets/js/kahoycrafts.min.js',
 		['jquery'],
 		wp_get_theme()->get( 'Version' ),
 		true
