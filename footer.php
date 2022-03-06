@@ -24,6 +24,7 @@
 			<nav aria-label="<?php esc_attr_e( 'Secondary menu', 'twentytwentyone' ); ?>" class="footer-navigation">
 				<ul class="footer-navigation-wrapper">
 					<?php
+					// SVG icons added by wordpress for links with certain domains
 					wp_nav_menu(
 						array(
 							'theme_location' => 'footer',

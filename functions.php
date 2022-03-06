@@ -16,6 +16,19 @@ function kahoy_crafts_styles() {
 	wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
 }
 
+add_action( 'wp_enqueue_scripts', 'disable_unused_styles', 11, 0);
+
+function disable_unused_styles() {
+	if ( is_front_page() ) {
+		wp_dequeue_style( 'woocommerce-general' );
+		wp_deregister_style( 'wp-block-library' );
+		wp_deregister_style( 'wc-blocks-style' );
+		wp_deregister_style( 'wp-mediaelement' );
+		// Load partial wp and wc gutenberg block styles for performance
+		wp_enqueue_style( 'partial-block-styles', get_stylesheet_directory_uri() . '/assets/css/block-style.min.css', [], wp_get_theme()->get( 'Version' ) );
+	}
+}
+
 /**
  * Enqueue scripts and styles.
  * 
@@ -53,7 +66,7 @@ function kahoy_crafts_scripts() {
 	);
 	wp_enqueue_script(
 		'fontawesome',
-		get_stylesheet_directory_uri() . '/fontawesome/js/all.min.js',
+		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js',
 		[],
 		wp_get_theme()->get( 'Version' ),
 		true
@@ -175,5 +188,5 @@ add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event' );
 /**
  * Disable unused jetpack CSS
  */
-add_filter( 'jetpack_sharing_counts', '__return_false', 99 );
+//add_filter( 'jetpack_sharing_counts', '__return_false', 99 );
 add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
