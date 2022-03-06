@@ -3,8 +3,6 @@
 
 	jQuery(document).ready(function($) {
 
-		foo
-
 		$('.owl-carousel').owlCarousel({
 			nav: true,
 			loop: true,
