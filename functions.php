@@ -23,6 +23,8 @@ function disable_unused_styles() {
 		wp_dequeue_style( 'woocommerce-general' );
 		wp_deregister_style( 'wp-block-library' );
 		wp_deregister_style( 'wc-blocks-style' );
+		wp_deregister_style( 'woocommerce-layout' );
+		wp_deregister_style( 'woocommerce-smallscreen' );
 		wp_deregister_style( 'wp-mediaelement' );
 		// Load partial wp and wc gutenberg block styles for performance
 		wp_enqueue_style( 'partial-block-styles', get_stylesheet_directory_uri() . '/assets/css/block-style.min.css', [], wp_get_theme()->get( 'Version' ) );
