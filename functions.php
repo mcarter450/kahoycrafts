@@ -5,30 +5,42 @@ $childtheme_directory = str_replace('twentytwentyone', 'kahoycrafts', get_templa
 require($childtheme_directory .'/classes/kahoycrafts_product_categories_widget.php');
 
 function kahoycrafts_load_widget() {
+
 	register_widget( 'kahoycrafts_product_categories_widget' );
+
 }
 
 add_action( 'widgets_init', 'kahoycrafts_load_widget' );
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles', 11, 0);
 
 function kahoy_crafts_styles() {
+
 	wp_dequeue_style( 'twenty-twenty-one-style' );
 	wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
+
 }
 
 add_action( 'wp_enqueue_scripts', 'disable_unused_styles', 11, 0);
 
+/**
+ * Purge unused styles for home page
+ */
 function disable_unused_styles() {
+
 	if ( is_front_page() ) {
+
 		wp_dequeue_style( 'woocommerce-general' );
+		wp_dequeue_style( 'twentytwentyone-jetpack' );
 		wp_deregister_style( 'wp-block-library' );
 		wp_deregister_style( 'wc-blocks-style' );
 		wp_deregister_style( 'woocommerce-layout' );
 		wp_deregister_style( 'woocommerce-smallscreen' );
 		wp_deregister_style( 'wp-mediaelement' );
 		// Load partial wp and wc gutenberg block styles for performance
-		wp_enqueue_style( 'partial-block-styles', get_stylesheet_directory_uri() . '/assets/css/block-style.min.css', [], wp_get_theme()->get( 'Version' ) );
+		wp_enqueue_style( 'partial-block-styles', get_stylesheet_directory_uri() . '/assets/css/purge-style.min.css', [], wp_get_theme()->get( 'Version' ) );
+
 	}
+
 }
 
 /**
@@ -37,6 +49,7 @@ function disable_unused_styles() {
  * @return void
  */
 function kahoy_crafts_scripts() {
+
 	// Owl slider
 	wp_enqueue_script(
 		'owl-carousel',
@@ -73,6 +86,7 @@ function kahoy_crafts_scripts() {
 		wp_get_theme()->get( 'Version' ),
 		true
 	);
+
 }
 
 add_filter('woocommerce_breadcrumb_defaults', 'woo_change_breadcrumb_home_test');
@@ -82,8 +96,10 @@ add_filter('woocommerce_breadcrumb_defaults', 'woo_change_breadcrumb_home_test')
  * @return array 	Modified array
  */
 function woo_change_breadcrumb_home_test($defaults) {
+
 	$defaults['home'] = 'Shop';
 	return $defaults;
+
 }
 
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
@@ -131,8 +147,10 @@ add_filter( 'woocommerce_breadcrumb_home_url', 'woo_custom_breadrumb_home_url' )
 
  /*Change the breadcrumb home link URL from / to /shop.
  @return string New URL for Home link item. / */
-function woo_custom_breadrumb_home_url() { 
-    return '/shop/'; 
+function woo_custom_breadrumb_home_url() {
+
+    return '/shop/';
+
 }
 
 add_filter('wp_sitemaps_posts_query_args', 'kahoycrafts_disable_sitemap_specific_page', 10, 2);
@@ -145,6 +163,7 @@ add_filter('wp_sitemaps_posts_query_args', 'kahoycrafts_disable_sitemap_specific
  * @return array Array of args
  */
 function kahoycrafts_disable_sitemap_specific_page($args, $post_type) {
+
 	if ('page' !== $post_type) return $args;
 	
 	$args['post__not_in'] = isset($args['post__not_in']) ? $args['post__not_in'] : [];
@@ -154,6 +173,7 @@ function kahoycrafts_disable_sitemap_specific_page($args, $post_type) {
 	$args['post__not_in'][] = 72; // exclude page with ID = 72
 	
 	return $args;
+	
 }
 
 /**

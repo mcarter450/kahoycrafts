@@ -29,7 +29,7 @@ function js() {
 function css() {
   return gulp.src([
         './assets/src/scss/style.scss',
-        './assets/src/scss/block-style.scss'
+        './assets/src/scss/purge-style.scss'
     ])
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
