@@ -173,7 +173,6 @@ function kahoycrafts_disable_sitemap_specific_page($args, $post_type) {
 	$args['post__not_in'][] = 72; // exclude page with ID = 72
 	
 	return $args;
-	
 }
 
 /**
