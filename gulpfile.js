@@ -62,9 +62,13 @@ function serve() {
   });
 };
 
-gulp.watch('./assets/src/scss/**/*.scss', css);
-gulp.watch('./assets/src/js/**/*.js', js);
+function watch() {
+    gulp.watch('./assets/src/scss/**/*.scss', css);
+    gulp.watch('./assets/src/js/**/*.js', js);
+}
 
-exports.watch = gulp.parallel(js, css);
+exports.build = gulp.parallel(js, css);
 
-exports.default = gulp.parallel(js, css, serve);
+exports.watch = gulp.parallel(js, css, watch);
+
+exports.default = gulp.parallel(js, css, watch, serve);

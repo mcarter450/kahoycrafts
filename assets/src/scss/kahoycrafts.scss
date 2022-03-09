@@ -140,29 +140,30 @@ section {
     .primary-navigation-open .menu-button-container {
         background-color: var(--global--color-lightest-blue);
     }
+
     .primary-navigation > .primary-menu-container {
         background-image: linear-gradient(238deg, var(--global--color-lightest-blue), transparent);
     }
+
     body.home .wp-block-columns.has-background {
         padding: 15px 0px;
-    }
-    body.home .wp-block-columns.has-background .has-text-align-center {
-        text-align: left;
-    }
-    body.home .wp-block-columns.has-background .wp-block-column .alignnormal {
-        max-width: var(--responsive--aligndefault-width);
-        margin-left: auto;
-        margin-right: auto;
+
+        .has-text-align-center {
+            text-align: left;
+        }
+        .wp-block-column .alignnormal {
+            max-width: var(--responsive--aligndefault-width);
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 
 }
 
 .wp-block-buttons.shop-buttons {
     margin-top: calc(0.66 * (var(--global--spacing-vertical) * 2));
-}
 
-@media only screen and (min-width: 482px) {
-    .wp-block-buttons.shop-buttons {
+    @media only screen and (min-width: 482px) {
         margin-top: calc(var(--global--spacing-vertical) * 2);
     }
 }
@@ -172,64 +173,63 @@ section {
     .wp-block-buttons.shop-buttons .wp-block-button__link {
         min-width: 185px;
     }
+
     .widget-area {
         column-gap: calc(3 * var(--global--spacing-horizontal));
     }
     
 }
 
-div.wpforms-container-full.newsletter-signup .wpforms-form .wpforms-title {
-    display: none;
-}
-
-div.wpforms-container-full.newsletter-signup {
+// Newsletter signup form
+div.wpforms-container.newsletter-signup {
     background-image: linear-gradient(304deg, var(--global--color-blue), transparent);
     padding: 15px;
-}
 
-.newsletter-signup .wpforms-confirmation-container-full, 
-.newsletter-signup div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message) {
-    background: #FFF;
-    border: 1px solid var(--global--color-lightest-blue);
-}
+    .wpforms-confirmation-container, 
+    div[submit-success]>.wpforms-confirmation-container:not(.wpforms-redirection-message) {
+        background: #FFF;
+        border: 1px solid var(--global--color-lightest-blue);
+    }
 
-div.wpforms-container-full.newsletter-signup .wpforms-form button[type=submit] {
-    background-color: var(--global--color-secondary);
-    color: var(--button--color-text);
-    border-color: var(--global--color-secondary);
-}
+    .wpforms-form .wpforms-title {
+        display: none;
+    }
 
-div.wpforms-container-full.newsletter-signup .wpforms-form button[type=submit]:hover {
-    background-color: var(--button--color-background-active);
-    color: var(--button--color-text-hover);
-    border-color: var(--global--color-secondary);
-}
+    .wpforms-form button[type=submit] {
+        background-color: var(--global--color-secondary);
+        color: var(--button--color-text);
+        border-color: var(--global--color-secondary);
 
-div.wpforms-container-full.newsletter-signup .wpforms-form button[type=submit]:focus {
-    outline-offset: -6px;
-    outline: 2px dotted currentColor;
-}
+        &:hover {
+            background-color: var(--button--color-background-active);
+            color: var(--button--color-text-hover);
+            border-color: var(--global--color-secondary);
+        }
+        &:focus {
+            outline-offset: -6px;
+            outline: 2px dotted currentColor;
+        }
+    }
 
-.site-footer > .site-info .protected-by .cloudflare-logo {
-    max-width: 150px; 
-    margin-left: 15px;
-}
+} 
 
-.site-footer > .site-info .privacy,
-.site-footer > .site-info .copyright,
-.site-footer > .site-info .powered-by,
-.site-footer > .site-info .protected-by {
-    margin-top: calc(0.7 * var(--global--spacing-vertical));
-}
+.site-footer > .site-info {
 
-@media only screen and (min-width: 822px) {
+    .protected-by .cloudflare-logo {
+        max-width: 150px; 
+        margin-left: 15px;
+    }
 
-    .site-footer > .site-info .privacy,
-    .site-footer > .site-info .copyright,
-    .site-footer > .site-info .powered-by,
-    .site-footer > .site-info .protected-by {
-        margin-top: initial;
-        margin-left: auto;
+    .privacy, 
+    .copyright, 
+    .powered-by, 
+    .protected-by {
+        margin-top: calc(0.7 * var(--global--spacing-vertical));
+
+        @media only screen and (min-width: 822px) {
+            margin-top: initial;
+            margin-left: auto;
+        }
     }
 
 }
@@ -253,58 +253,78 @@ div.wpforms-container-full.newsletter-signup .wpforms-form button[type=submit]:f
     background-color: var(--global--color-lighter-blue);
 }
 
-@media only screen and (max-width: 481px) {
+/* Woo Account Page */
 
-    .woocommerce-account .woocommerce-MyAccount-navigation li {
-        border-bottom: 1px solid rgba(0,0,0,.05);
+.woocommerce-account {
+
+    .woocommerce-MyAccount-navigation {
+
+        li {
+            font-size: var(--global--font-size-lg);
+
+            @media only screen and (max-width: 481px) {
+                border-bottom: 1px solid rgba(0,0,0,.05);
+            }
+        }
+
+        &-link a {
+            padding: 5px;
+            font-size: var(--global--font-size-lg);
+
+            &:focus {
+                color: var(--wp--style--color--link,var(--global--color-white)) !important;
+            }
+        }
+
+    }
+
+    #main .woocommerce {
+        max-width: var(--responsive--alignwide-width);
+        padding: 0;
+    }
+
+    .woocommerce-MyAccount-content p {
+        font-size: var(--global--font-size-base);
+        &:first-of-type {
+            margin-bottom: var(--global--font-size-base);
+        }
     }
 
 }
 
-.woocommerce-account .woocommerce-MyAccount-navigation li,
-.woocommerce-account .woocommerce-MyAccount-navigation-link a {
-    font-size: var(--global--font-size-lg);
-}
+/* Shipping Weight & Dimensions (Content Hack) */
+.woocommerce-product-attributes-item {
 
-.woocommerce-account .woocommerce-MyAccount-navigation-link a {
-    padding: 5px;
-}
+    &--weight ,
+    &--dimensions {
 
-.woocommerce-account .woocommerce-MyAccount-navigation-link a:focus {
-    color: var(--wp--style--color--link,var(--global--color-white)) !important;
-}
+        th.woocommerce-product-attributes-item__label:before {
+            content: "Shipping ";
+        }
 
-.woocommerce-account #main .woocommerce {
-    max-width: var(--responsive--alignwide-width);
-    padding: 0;
-}
+    }
 
-.woocommerce-account .woocommerce-MyAccount-content p:first-of-type {
-    margin-bottom: var(--global--font-size-base);
-}
-
-.woocommerce-account .woocommerce-MyAccount-content p {
-    font-size: var(--global--font-size-base);
-}
-
-/* Shipping Weight & Dimensions */
-.woocommerce-product-attributes-item--weight th.woocommerce-product-attributes-item__label:before,
-.woocommerce-product-attributes-item--dimensions th.woocommerce-product-attributes-item__label:before {
-    content: "Shipping ";
 }
 
 /* Checkout Page */
-.woocommerce-checkout.woocommerce-page table.shop_table td, 
-.woocommerce-checkout.woocommerce-page table.shop_table th {
-    width: 50%;
-}
+.woocommerce-checkout {
 
-.woocommerce-checkout .form-row.woocommerce-SavedPaymentMethods-saveNew {
-    padding: 10px;
-}
+    &.woocommerce-page table.shop_table {
 
-.woocommerce-checkout .woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text p {
-    font-size: inherit;
+        th, td {
+            width: 50%;
+        }
+
+    }
+
+    .form-row.woocommerce-SavedPaymentMethods-saveNew {
+        padding: 10px;
+    }
+
+    .woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text p {
+        font-size: inherit;
+    }
+
 }
 
 .woocommerce-notices-wrapper a.button.wc-forward {
@@ -314,11 +334,11 @@ div.wpforms-container-full.newsletter-signup .wpforms-form button[type=submit]:f
     line-height: 1 !important;
     background: transparent !important;
     color: #47c9e5 !important;
-}
 
-.woocommerce-notices-wrapper a.button.wc-forward:hover {
-    background: transparent !important;
-    text-decoration: underline;
+    &:hover {
+        background: transparent !important;
+        text-decoration: underline;
+    }
 }
 
 /* Suppress Unwanted Focus Styles */

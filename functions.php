@@ -35,6 +35,7 @@ function disable_unused_styles() {
 		wp_deregister_style( 'wc-blocks-style' );
 		wp_deregister_style( 'woocommerce-layout' );
 		wp_deregister_style( 'woocommerce-smallscreen' );
+		wp_deregister_style( 'wpforms-full' );
 		wp_deregister_style( 'wp-mediaelement' );
 		// Load partial wp and wc gutenberg block styles for performance
 		wp_enqueue_style( 'partial-block-styles', get_stylesheet_directory_uri() . '/assets/css/purge-style.min.css', [], wp_get_theme()->get( 'Version' ) );
@@ -173,6 +174,7 @@ function kahoycrafts_disable_sitemap_specific_page($args, $post_type) {
 	$args['post__not_in'][] = 72; // exclude page with ID = 72
 	
 	return $args;
+
 }
 
 /**
