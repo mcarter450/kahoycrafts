@@ -95,7 +95,7 @@ function purge_theme_styles() {
           variables: true,
           safelist: {
             standard: ['onsale', 'variations', 'woocommerce-variation-price'],
-            deep: [/^woocommerce-product-gallery/]
+            deep: [/^woocommerce-product-gallery/, /^primary-navigation/]
           },
           rejected: false
       }))
