@@ -16,31 +16,40 @@ add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles', 11, 0);
 function kahoy_crafts_styles() {
 
 	wp_dequeue_style( 'twenty-twenty-one-style' );
-	wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
+
+	if ( is_front_page() ) {
+		
+		wp_deregister_style( 'wp-mediaelement' );
+		// Load partial wp and wc gutenberg block styles for performance
+
+	}
+	if ( is_front_page() or 
+		 is_page('contact') or 
+		 is_page('owners-bio') or 
+		 is_page('free-shipping-kit') or 
+		 is_page('products-feed-generator') or
+		 is_blog() or is_woocommerce() ) {
+		//is_account_page() - Bug with layout
+
+		wp_deregister_style( 'wp-block-library' );
+		wp_deregister_style( 'wc-blocks-style' );
+		wp_dequeue_style( 'twentytwentyone-jetpack' );
+		wp_dequeue_style( 'woocommerce-general' );
+		wp_deregister_style( 'woocommerce-layout' );
+		wp_deregister_style( 'woocommerce-smallscreen' );
+
+		wp_register_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/purge-style.min.css', [], wp_get_theme()->get( 'Version' ) );
+
+		wp_enqueue_style( 'woocommerce-smallscreen', get_stylesheet_directory_uri() . '/assets/src/purge-css/woocommerce-smallscreen.css', ['kahoy-crafts-style'], wp_get_theme()->get( 'Version' ), 'only screen and (max-width: 768px)' );
+	} else {
+		// Use full styles for sensitive pages
+		wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
+	}
 
 }
 
-add_action( 'wp_enqueue_scripts', 'disable_unused_styles', 11, 0);
-
-/**
- * Purge unused styles for home page
- */
-function disable_unused_styles() {
-
-	if ( is_front_page() ) {
-
-		wp_dequeue_style( 'woocommerce-general' );
-		wp_dequeue_style( 'twentytwentyone-jetpack' );
-		wp_deregister_style( 'wp-block-library' );
-		wp_deregister_style( 'wc-blocks-style' );
-		wp_deregister_style( 'woocommerce-layout' );
-		wp_deregister_style( 'woocommerce-smallscreen' );
-		wp_deregister_style( 'wp-mediaelement' );
-		// Load partial wp and wc gutenberg block styles for performance
-		wp_enqueue_style( 'partial-block-styles', get_stylesheet_directory_uri() . '/assets/css/purge-style.min.css', [], wp_get_theme()->get( 'Version' ) );
-
-	}
-
+function is_blog () {
+    return ( is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag()) && 'post' == get_post_type();
 }
 
 /**

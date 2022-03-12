@@ -253,6 +253,10 @@ div.wpforms-container.newsletter-signup {
     background-color: var(--global--color-lighter-blue);
 }
 
+.single-product .type-product.sale > .onsale {
+    right: calc(52% - 0.7rem);
+}
+
 /* Woo Account Page */
 
 .woocommerce-account {
