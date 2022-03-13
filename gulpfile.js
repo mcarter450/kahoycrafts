@@ -78,7 +78,6 @@ async function download_webpages(cb) {
         } 
         catch (err) {
             console.log(err);
-            //cb();
         }
     }
     cb();
@@ -169,16 +168,16 @@ function serve() {
 };
 
 function watch() {
-    gulp.watch('./assets/src/scss/**/*.scss', css);
-    gulp.watch('./assets/src/js/**/*.js', js);
+    gulp.watch('./assets/src/scss/**/*.scss', { ignoreInitial: false }, css);
+    gulp.watch('./assets/src/js/**/*.js', { ignoreInitial: false }, js);
 }
 
 exports.download = download_webpages;
 
 exports.purge = gulp.series(purge_theme_styles, purge_block_styles);
 
-exports.build = gulp.parallel(js, css);
+exports.build = gulp.parallel(css, js);
 
-exports.watch = gulp.parallel(js, css, watch);
+exports.watch = gulp.parallel(watch);
 
-exports.default = gulp.parallel(js, css, watch, serve);
+exports.default = gulp.parallel(watch, serve);
