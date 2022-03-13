@@ -17,10 +17,13 @@ function kahoy_crafts_styles() {
 
 	wp_dequeue_style( 'twenty-twenty-one-style' );
 
+	// wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
+
+	// return;
+
 	if ( is_front_page() ) {
 		
 		wp_deregister_style( 'wp-mediaelement' );
-		// Load partial wp and wc gutenberg block styles for performance
 
 	}
 	if ( is_front_page() or 
@@ -31,6 +34,7 @@ function kahoy_crafts_styles() {
 		 is_blog() or is_woocommerce() ) {
 		//is_account_page() - Bug with layout
 
+		// Load partial wp and wc gutenberg block styles for performance
 		wp_deregister_style( 'wp-block-library' );
 		wp_deregister_style( 'wc-blocks-style' );
 		wp_dequeue_style( 'twentytwentyone-jetpack' );
@@ -38,9 +42,12 @@ function kahoy_crafts_styles() {
 		wp_deregister_style( 'woocommerce-layout' );
 		wp_deregister_style( 'woocommerce-smallscreen' );
 
-		wp_register_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/purge-style.min.css', [], wp_get_theme()->get( 'Version' ) );
+		wp_register_style( 'purge-block-style', get_stylesheet_directory_uri() . '/assets/css/purge-block-style.min.css', [], wp_get_theme()->get( 'Version' ) );
 
-		wp_enqueue_style( 'woocommerce-smallscreen', get_stylesheet_directory_uri() . '/assets/src/purge-css/woocommerce-smallscreen.css', ['kahoy-crafts-style'], wp_get_theme()->get( 'Version' ), 'only screen and (max-width: 768px)' );
+		wp_enqueue_style( 'woocommerce-smallscreen', get_stylesheet_directory_uri() . '/assets/css/woocommerce-smallscreen.min.css', ['purge-block-style'], wp_get_theme()->get( 'Version' ), 'only screen and (max-width: 768px)' );
+
+		wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/purge-style.min.css', [], wp_get_theme()->get( 'Version' ) );
+
 	} else {
 		// Use full styles for sensitive pages
 		wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );

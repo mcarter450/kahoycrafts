@@ -92,9 +92,8 @@ function purge_theme_styles() {
       ])
       .pipe(purgecss({
           content: ['assets/src/downloads/**/*.html'],
-          variables: true,
           safelist: {
-            standard: ['onsale', 'variations', 'woocommerce-variation-price'],
+            standard: ['onsale', 'variations', 'woocommerce-variation-price', 'widget'],
             deep: [/^woocommerce-product-gallery/, /^primary-navigation/]
           },
           rejected: false
@@ -103,7 +102,7 @@ function purge_theme_styles() {
       .pipe(gulp.dest('assets/src/purge-css/'));
 }
 
-function purge_plugin_styles() {
+function purge_block_styles() {
     return gulp.src([
         '../../../wp-includes/css/dist/block-library/style.css',
         '../../plugins/woocommerce/assets/css/woocommerce-layout.css',
@@ -113,7 +112,6 @@ function purge_plugin_styles() {
       ])
       .pipe(purgecss({
           content: ['assets/src/downloads/**/*.html'],
-          variables: true,
           safelist: {
             standard: ['onsale']
           },
@@ -134,21 +132,16 @@ function js() {
             path.extname = ".min.js";
         }
     }))
-    //.pipe(concat('all.min.js'))
     .pipe(gulp.dest('./assets/js/'))
     .pipe(browserSync.stream());
 };
 
 function css() {
-  return gulp.src([
-        './assets/src/scss/style.scss',
-        './assets/src/scss/purge-style.scss'
-    ])
+  return gulp.src('./assets/src/scss/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleanCSS({compatibility: '*'}))
-    //.pipe(concat('all.min.css'))
     .pipe(sourcemaps.write('.', {
         includeContent: false,
         sourceRoot: '../src/scss'
@@ -182,7 +175,7 @@ function watch() {
 
 exports.download = download_webpages;
 
-exports.purge = gulp.series(purge_theme_styles, purge_plugin_styles);
+exports.purge = gulp.series(purge_theme_styles, purge_block_styles);
 
 exports.build = gulp.parallel(js, css);
 

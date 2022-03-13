@@ -443,6 +443,8 @@ p.has-background {
    */
   /* stylelint-disable function-comma-space-after */
   /* stylelint-enable function-comma-space-after */
+  --wp--preset--font-size--normal: 16px;
+  --wp--preset--font-size--huge: 42px;
 }
 :root .has-midnight-gradient-background {
   background: linear-gradient(135deg, #020381 0%, #2874fc 100%);
