@@ -1,68 +1,17 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     sass = require('gulp-sass')(require('sass')),
     concat = require('gulp-concat'),
     autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
-    //purgecss = require('gulp-purgecss'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
-    browserSync = require('browser-sync').create();
-
-const fs = require('fs');
-const axios = require('axios').default;
-const purgecss = require('gulp-purgecss');
-
-const webpages = [
-    {
-        name: 'home',
-        path: '/'
-    },
-    {
-        name: 'shop',
-        path: '/shop/'
-    },
-    {
-        name: 'category',
-        path: '/product-category/knobs-drawer-pulls/'
-    },
-    {
-        name: 'product_detail',
-        path: '/product/decorative-bookends-multicolor-backlit-cityscape-1-pair/'
-    },
-    {
-        name: 'bio',
-        path: '/owners-bio/'
-    },
-    {
-        name: 'contact',
-        path: '/contact/'
-    },
-    {
-        name: 'wordpress-plugin-donation',
-        path: '/wordpress-plugin-donation/'
-    },
-    {
-        name: 'free-shipping-kit',
-        path: '/free-shipping-kit/'
-    },
-     {
-        name: 'products-feed-generator',
-        path: '/products-feed-generator/'
-    },
-    {
-        name: 'blog',
-        path: '/blog/'
-    },
-    {
-        name: 'blog_page',
-        path: '/half-moon-oak-cabinet-pulls/'
-    },
-    {
-        name: 'myaccount',
-        path: '/my-account/'
-    }
-];
+    browserSync = require('browser-sync').create(),
+    fs = require('fs'),
+    axios = require('axios').default,
+    purgecss = require('gulp-purgecss'),
+    config = require('./gulp.config'),
+    webpages = config.webpages;
 
 async function download_webpages(cb) {
     // Make a request for a user with a given ID
