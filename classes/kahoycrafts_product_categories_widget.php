@@ -46,6 +46,8 @@ class kahoycrafts_product_categories_widget extends WP_Widget {
 		);
 		 
 		$product_categories = get_terms('product_cat', $cat_args);
+
+		$content = '';
 		 
 		if (! empty($product_categories) ) {
 		    $content .= '

@@ -296,6 +296,18 @@ div.wpforms-container.newsletter-signup {
 
 }
 
+/* Html5 Video Element */
+.woocommerce .product .wp-video {
+    width: 100% !important;
+    margin-top: 1rem;
+
+    embed, video {
+        max-width: 100%;
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
 /* Shipping Weight & Dimensions (Content Hack) */
 .woocommerce-product-attributes-item {
 

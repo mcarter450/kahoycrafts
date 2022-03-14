@@ -17,15 +17,13 @@ function kahoy_crafts_styles() {
 
 	wp_dequeue_style( 'twenty-twenty-one-style' );
 
-	// wp_enqueue_style( 'kahoy-crafts-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', [], wp_get_theme()->get( 'Version' ) );
+	// Use native Html5 players
+	wp_deregister_style( 'wp-mediaelement' );
+	wp_deregister_script( 'wp-mediaelement' );
+	wp_deregister_script( 'mediaelement-core' );
+	wp_deregister_script( 'mediaelement-migrate' );
+	wp_deregister_script( 'mediaelement-vimeo' );
 
-	// return;
-
-	if ( is_front_page() ) {
-		
-		wp_deregister_style( 'wp-mediaelement' );
-
-	}
 	if ( is_front_page() or 
 		 is_page('contact') or 
 		 is_page('owners-bio') or 
@@ -65,7 +63,6 @@ function is_blog () {
  * @return void
  */
 function kahoy_crafts_scripts() {
-
 	// Owl slider
 	wp_enqueue_script(
 		'owl-carousel',
@@ -105,7 +102,7 @@ function kahoy_crafts_scripts() {
 
 }
 
-add_filter('woocommerce_breadcrumb_defaults', 'woo_change_breadcrumb_home_test');
+add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
 
 /**
  * @param array $defaults The default array of items
@@ -118,7 +115,7 @@ function woo_change_breadcrumb_home_test($defaults) {
 
 }
 
-add_action( 'wp_enqueue_scripts', 'kahoy_crafts_scripts' );
+add_filter('woocommerce_breadcrumb_defaults', 'woo_change_breadcrumb_home_test');
 
 /**
  * Defer or async scripts
