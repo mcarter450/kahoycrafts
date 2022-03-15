@@ -217,6 +217,10 @@ gtag('event', 'conversion', {
 
 }
 
+// Stop wpautop from misssing up video tag
+remove_filter( 'the_content', 'wpautop' );
+add_filter( 'the_content', 'wpautop' , 12);
+
 //add_action( 'woocommerce_before_checkout_form', 'add_gtag_purchase_event' );
 add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event' );
 
