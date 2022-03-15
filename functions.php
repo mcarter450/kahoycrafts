@@ -217,8 +217,38 @@ gtag('event', 'conversion', {
 
 }
 
+function video_shortcode_override( $markup, $attr, $content, $id ) {
+	
+	$default_types = wp_get_video_extensions();
+	$type = '';
+
+	foreach ( $default_types as $type ) {
+		if ( isset( $attr[$type] ) ) {
+			break;
+		}
+	}
+
+	if ($type) {
+
+		$markup .= '
+<div class="wp-video">
+	<video class="wp-video-shortcode" id="video-'. $id .'" width="'. $attr['width'] .'" height="'. $attr['height'] .'" preload="'. $attr['preload'] .'" controls="controls">
+		<source type="video/'. $type .'" src="'. $attr[$type] .'">
+		<a href="'. $attr[$type] .'">'. $attr[$type] .'</a>
+	</video>
+</div>';
+
+	}
+
+	return $markup;
+
+}
+
+// Override video tag
+add_filter( 'wp_video_shortcode_override', 'video_shortcode_override', 10, 4);
+
 //add_action( 'woocommerce_before_checkout_form', 'add_gtag_purchase_event' );
-add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event' );
+add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event', 10, 4 );
 
 /**
  * Disable unused jetpack CSS
