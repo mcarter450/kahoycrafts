@@ -123,7 +123,7 @@
 }
 
 /* Welcome page h2 should look like an h4 */
-body.home h2 {
+body.home .entry-content h2 {
     font-size: var(--heading--font-size-h4);
     font-weight: var(--heading--font-weight-strong);
     letter-spacing: var(--heading--letter-spacing-h4);
