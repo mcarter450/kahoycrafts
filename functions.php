@@ -217,8 +217,6 @@ gtag('event', 'conversion', {
 
 }
 
-add_filter( 'the_content', 'shortcode_unautop' );
-
 //add_action( 'woocommerce_before_checkout_form', 'add_gtag_purchase_event' );
 add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event' );
 

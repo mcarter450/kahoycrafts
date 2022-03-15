@@ -300,6 +300,10 @@ div.wpforms-container.newsletter-signup {
 .woocommerce .product .wp-video {
     width: 100% !important;
     margin-top: 1rem;
+    
+    br {
+        display: none;
+    }
 
     embed, video {
         max-width: 100%;
