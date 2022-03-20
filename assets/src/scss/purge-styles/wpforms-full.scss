@@ -211,6 +211,13 @@ div.wpforms-container-full .wpforms-form .wpforms-recaptcha-container {
     }
 }
 
+div.wpforms-container-full .wpforms-form .wpforms-field-description, div.wpforms-container-full .wpforms-form .wpforms-field-limit-text {
+    font-size: 13px;
+    line-height: 1.3;
+    margin: 8px 0 0 0;
+    word-break: break-all;
+}
+
 /**
  * Extend full container style to base container
  */
