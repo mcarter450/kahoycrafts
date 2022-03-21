@@ -313,10 +313,9 @@ add_action('woocommerce_after_order_notes', 'newsletter_checkout_field');
  */
 function newsletter_checkout_field_update_order_meta($order_id) {
 
-	if ( isset($_POST['newsletter_optin']) ) {
-		$value = intval($_POST['newsletter_optin']) ? 'yes' : 'no';
-		update_post_meta( $order_id, 'newsletter_optin', $value );
-	}
+	$value = isset($_POST['newsletter_optin']) ? 'yes' : 'no';
+	
+	update_post_meta( $order_id, 'newsletter_optin', $value );
 
 }
 
