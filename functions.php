@@ -311,7 +311,7 @@ add_action('woocommerce_after_order_notes', 'newsletter_checkout_field');
 function newsletter_checkout_field_update_order_meta($order_id) {
 
 	if (! empty($_POST['newsletter_optin']) ) {
-		update_post_meta( $order_id, 'Newsletter Optin', sanitize_key($_POST['newsletter_optin']) );
+		update_post_meta( $order_id, 'newsletter_optin', sanitize_key($_POST['newsletter_optin']) );
 	}
 
 }

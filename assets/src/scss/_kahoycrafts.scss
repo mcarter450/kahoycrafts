@@ -345,9 +345,14 @@ div.wpforms-container.newsletter-signup {
         font-size: inherit;
     }
 
-    .newsletter-checkout-field .checkbox .input-checkbox {
+    .newsletter-checkout-field .checkbox .input-checkbox,
+    .wc_payment_method .payment_box input[type=checkbox] {
         vertical-align: middle;
         margin-right: 5px;
+    }
+
+    form .form-row label {
+        vertical-align: initial;
     }
 
 }
