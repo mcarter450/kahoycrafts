@@ -3,6 +3,7 @@
 $childtheme_directory = str_replace('twentytwentyone', 'kahoycrafts', get_template_directory());
 
 require($childtheme_directory .'/classes/kahoycrafts_product_categories_widget.php');
+require($childtheme_directory .'/assets/aws.phar'); // AWS SDK
 
 function kahoycrafts_load_widget() {
 
@@ -216,6 +217,106 @@ gtag('event', 'conversion', {
 	}
 
 }
+
+/**
+ * Action that fires during form entry processing after initial field validation.
+ *
+ * @link   https://wpforms.com/developers/wpforms_process/
+ *
+ * @param  array  $fields    Sanitized entry field. values/properties.
+ * @param  array  $entry     Original $_POST global.
+ * @param  array  $form_data Form data and settings.
+ *
+ */
+function wpf_dev_process( $fields, $entry, $form_data ) {
+
+	// Optional, you can limit to specific forms. Below, we restrict output to
+	// form #5.
+	if ( $form_data['settings']['form_class'] == 'newsletter-signup' ) {
+		$name = sanitize_text_field( $fields[1]['value'] );
+		$email = sanitize_email( $fields[2]['value'] );
+	}
+	else {
+		return $fields;
+	}
+
+	$sdk = new Aws\Sdk([
+		'region' => 'us-west-2',
+		'version' => 'latest'
+	]);
+
+	$client = $sdk->createSesV2();
+
+	try {
+
+		$client->createContact([
+			'AttributesData' => '{"Name": "'. $name .'"}',
+			'ContactListName' => 'KahoyCraftsMailingList', // REQUIRED
+			'EmailAddress' => $email, // REQUIRED
+			'TopicPreferences' => [
+				[
+					'SubscriptionStatus' => 'OPT_IN', // REQUIRED
+					'TopicName' => 'News', // REQUIRED
+				],
+				// ...
+			],
+			'UnsubscribeAll' => false,
+		]);
+
+		return $fields;
+
+	}
+	catch (Exception $e) {
+
+		wpforms()->process->errors[$form_data[ 'id' ]]['2'] = __( 'Email address is malformed or already exists.' );
+	}
+
+	
+}
+
+add_action( 'wpforms_process', 'wpf_dev_process', 10, 3 );
+
+function newsletter_checkout_field($checkout) {
+
+	echo '<div class="newsletter-checkout-field">';
+
+	$checked = $checkout->get_value( 'newsletter_optin' ) ? $checkout->get_value( 'newsletter_optin' ) : 1;
+
+	woocommerce_form_field('newsletter_optin', 
+		array(
+
+			'type' => 'checkbox',
+
+			'class' => array(
+
+				'optin-field-class form-row-wide'
+
+			),
+
+			'required' => true,
+
+			'label' => __('Keep me up to date on news and exclusive offers via email'),
+
+		) ,
+
+		$checked
+	);
+
+	echo '</div>';
+
+}
+
+add_action('woocommerce_after_order_notes', 'newsletter_checkout_field');
+
+function newsletter_checkout_field_update_order_meta($order_id) {
+
+	if (! empty($_POST['newsletter_optin']) ) {
+		update_post_meta( $order_id, 'Newsletter Optin', sanitize_key($_POST['newsletter_optin']) );
+	}
+
+}
+
+add_action('woocommerce_checkout_update_order_meta', 'newsletter_checkout_field_update_order_meta');
 
 function video_shortcode_override( $markup, $attr, $content, $id ) {
 	
