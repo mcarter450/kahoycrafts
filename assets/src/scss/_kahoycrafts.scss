@@ -258,7 +258,6 @@ div.wpforms-container.newsletter-signup {
 }
 
 /* Woo Account Page */
-
 .woocommerce-account {
 
     .woocommerce-MyAccount-navigation {
@@ -310,6 +309,11 @@ div.wpforms-container.newsletter-signup {
         width: auto !important;
         height: auto !important;
     }
+}
+
+/* Product Detail Page */
+#wcpay-payment-request-button-separator {
+    margin-bottom: 1em;
 }
 
 /* Shipping Weight & Dimensions (Content Hack) */
