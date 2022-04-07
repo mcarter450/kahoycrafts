@@ -25,6 +25,10 @@ module.exports = {
 	        path: '/contact/'
 	    },
 	    {
+	        name: 'gallery',
+	        path: '/gallery/'
+	    },
+	    {
 	        name: 'wordpress-plugin-donation',
 	        path: '/wordpress-plugin-donation/'
 	    },

@@ -226,6 +226,8 @@ h5.has-background {
   margin: 0 0 1em 0;
 }
 .wp-block-image img {
+  height: auto;
+  max-width: 100%;
   vertical-align: bottom;
 }
 .wp-block-image:not(.is-style-rounded) > a,
@@ -494,7 +496,7 @@ p.has-background {
 /**
  * Provide baseline responsiveness for images.
  */
-html :where(img) {
+html :where(img[class*="wp-image-"]) {
   height: auto;
   max-width: 100%;
 }
