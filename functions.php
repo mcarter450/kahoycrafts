@@ -351,8 +351,7 @@ function video_shortcode_override( $markup, $attr, $content, $id ) {
 // Override video tag
 add_filter( 'wp_video_shortcode_override', 'video_shortcode_override', 10, 4);
 
-//add_action( 'woocommerce_before_checkout_form', 'add_gtag_purchase_event' );
-add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event', 10, 4 );
+//add_action( 'woocommerce_thankyou', 'add_gtag_purchase_event', 10, 4 );
 
 /**
  * Disable unused jetpack CSS
