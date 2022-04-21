@@ -317,7 +317,7 @@ div.wpforms-container.newsletter-signup {
     #wcpay-payment-request-button-separator {
         margin-bottom: 1em;
     }
-    
+
 }
 
 /* Shipping Weight & Dimensions (Content Hack) */
@@ -352,9 +352,8 @@ div.wpforms-container.newsletter-signup {
     .woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text p {
         font-size: inherit;
     }
-
-    .newsletter-checkout-field .checkbox .input-checkbox,
-    .wc_payment_method .payment_box input[type=checkbox] {
+    
+    input[type=checkbox] {
         vertical-align: middle;
         margin-right: 5px;
     }
