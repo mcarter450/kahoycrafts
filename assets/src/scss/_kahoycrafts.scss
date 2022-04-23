@@ -298,6 +298,12 @@ div.wpforms-container.newsletter-signup {
         margin-right: 5px;
     }
 
+    .woocommerce-form__label-for-checkbox {
+        * {
+            vertical-align: middle;
+        }
+    }
+
 }
 
 /* Html5 Video Element */
