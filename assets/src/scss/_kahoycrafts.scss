@@ -260,6 +260,13 @@ div.wpforms-container.newsletter-signup {
 /* Woo Account Page */
 .woocommerce-account {
 
+    .login {
+        .cookie-notice {
+            margin: 15px 0;
+            color: red;
+        }
+    }
+
     .woocommerce-MyAccount-navigation {
 
         li {
