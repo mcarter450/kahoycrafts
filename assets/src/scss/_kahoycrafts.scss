@@ -120,11 +120,28 @@
     --button--padding-vertical: 15px;
     --button--padding-horizontal: calc(2 * var(--button--padding-vertical));
 
+    /* Header */
+    --branding--color-text: var(--global--color-primary);
+    --branding--color-link: var(--global--color-primary);
+    --branding--color-link-hover: var(--global--color-secondary);
+    --branding--title--font-family: var(--global--font-primary);
+    --branding--title--font-size: var(--global--font-size-lg);
+    --branding--title--font-size-mobile: var(--heading--font-size-h4);
+    --branding--title--font-weight: normal;
+    --branding--title--text-transform: uppercase;
+    --branding--description--font-family: var(--global--font-secondary);
+    --branding--description--font-size: var(--global--font-size-sm);
+    --branding--description--font-family: var(--global--font-secondary);
+    --branding--logo--max-width: 200px;
+    --branding--logo--max-height: auto;
+    --branding--logo--max-width-mobile: 96px;
+    --branding--logo--max-height-mobile: 96px;
+
 }
 
-.site-logo > .custom-logo-link > img {
-    max-width: 200px;
-}
+// .site-logo > .custom-logo-link > img {
+//     max-width: 200px;
+// }
 
 /* Welcome page h2 should look like an h4 */
 body.home .entry-content h2 {

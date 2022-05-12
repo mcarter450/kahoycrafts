@@ -42,7 +42,14 @@ function purge_theme_styles() {
           content: ['assets/src/downloads/**/*.html'],
           safelist: {
             standard: ['onsale', 'variations', 'woocommerce-variation-price', 'widget'],
-            deep: [/^woocommerce-product-gallery/, /^primary-navigation/]
+            deep: [
+                /^woocommerce-product-gallery/, 
+                /^primary-navigation/, 
+                /^wp-custom-logo/, 
+                /^site-header/, 
+                /^site-logo/, 
+                /^site-branding/
+            ]
           },
           rejected: false
       }))

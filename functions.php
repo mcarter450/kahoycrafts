@@ -30,6 +30,7 @@ function kahoy_crafts_styles() {
 		 is_page('owners-bio') or 
 		 is_page('free-shipping-kit') or 
 		 is_page('products-feed-generator') or
+		 is_page('gallery') or 
 		 is_blog() or is_woocommerce() ) {
 		//is_account_page() - Bug with layout
 
