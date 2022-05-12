@@ -220,9 +220,6 @@
   margin-top: 0.5em;
   margin-bottom: 1em;
 }
-.wp-block-embed iframe {
-  max-width: 100%;
-}
 
 .wp-block-group {
   box-sizing: border-box;
