@@ -122,6 +122,10 @@
 
 }
 
+.site-logo > .custom-logo-link > img {
+    max-width: 200px;
+}
+
 /* Welcome page h2 should look like an h4 */
 body.home .entry-content h2 {
     font-size: var(--heading--font-size-h4);

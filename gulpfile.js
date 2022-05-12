@@ -111,7 +111,7 @@ function serve() {
         './assets/css/**/*.css'
     ],
     proxy: {
-        target: "http://localhost/"
+        target: "http://kahoycrafts.test/"
     }
   });
 };
