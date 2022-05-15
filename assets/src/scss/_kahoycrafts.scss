@@ -216,6 +216,10 @@ div.wpforms-container.newsletter-signup {
         display: none;
     }
 
+    .wpforms-submit:after {
+        display: none;
+    }
+
     .wpforms-form button[type=submit] {
         background-color: var(--global--color-secondary);
         color: var(--button--color-text);
@@ -230,9 +234,21 @@ div.wpforms-container.newsletter-signup {
             outline-offset: -6px;
             outline: 2px dotted currentColor;
         }
+
+        &:after {
+            content: '\f0f3';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .svg-inline--fa {
+            height: 1em;
+            margin-left: .3em;
+        }
     }
 
-} 
+}
 
 .site-footer > .site-info {
 

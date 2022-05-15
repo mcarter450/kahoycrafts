@@ -65,7 +65,7 @@ function is_blog () {
  * @return void
  */
 function kahoy_crafts_scripts() {
-	// Owl slider
+	
 	wp_enqueue_script(
 		'owl-carousel',
 		get_stylesheet_directory_uri() . '/assets/js/owl.carousel.min.js',
@@ -124,11 +124,15 @@ add_filter('woocommerce_breadcrumb_defaults', 'woo_change_breadcrumb_home_test')
  */
 add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 	
-	if ( $handle == 'fontawesome' || 
-		 $handle == 'wpforms-mailcheck' || 
+	if ( $handle == 'wpforms-mailcheck' || 
 		 $handle == 'wpforms-punycode' ) {
 		
 		return str_replace( ' src', ' async src', $tag );
+	}
+
+	if ( $handle == 'fontawesome' ) {
+		
+		return str_replace( ' src', ' data-search-pseudo-elements async src', $tag );
 	}
 
 	if ( $handle == 'wpforms' || 
