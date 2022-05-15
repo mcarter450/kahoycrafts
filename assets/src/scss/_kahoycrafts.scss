@@ -417,6 +417,13 @@ div.wpforms-container.newsletter-signup {
     }
 }
 
+/* 
+ * Fix alignment of password eyelid 
+ */
+.woocommerce form .show-password-input::after, .woocommerce-page form .show-password-input::after {
+    line-height: unset;
+}
+
 /* Suppress Unwanted Focus Styles */
 .has-background-white .site a.woocommerce-LoopProduct-link:focus,
 .has-background-white .site a.wc-block-grid__product-link:focus {
