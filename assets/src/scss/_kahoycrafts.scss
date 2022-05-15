@@ -309,6 +309,13 @@ div.wpforms-container.newsletter-signup {
 
     }
 
+    /* 
+     * Fix alignment of password eyelid 
+     */
+    .woocommerce-EditAccountForm .show-password-input::after {
+        line-height: unset;
+    }
+
     #main .woocommerce {
         max-width: var(--responsive--alignwide-width);
         padding: 0;
@@ -415,13 +422,6 @@ div.wpforms-container.newsletter-signup {
         background: transparent !important;
         text-decoration: underline;
     }
-}
-
-/* 
- * Fix alignment of password eyelid 
- */
-.woocommerce form .show-password-input::after, .woocommerce-page form .show-password-input::after {
-    line-height: unset;
 }
 
 /* Suppress Unwanted Focus Styles */
