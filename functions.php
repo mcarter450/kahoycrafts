@@ -281,7 +281,7 @@ function newsletter_checkout_field($checkout) {
 
 	echo '<div class="newsletter-checkout-field">';
 
-	$checked = $checkout->get_value( 'newsletter_optin' ) ? $checkout->get_value( 'newsletter_optin' ) : 1;
+	$checked = $checkout->get_value( 'newsletter_optin' ) ? $checkout->get_value( 'newsletter_optin' ) : 0;
 
 	woocommerce_form_field('newsletter_optin', 
 		array(
@@ -294,7 +294,7 @@ function newsletter_checkout_field($checkout) {
 
 			),
 
-			'required' => true,
+			'required' => false,
 
 			'label' => __('Keep me up to date on news and exclusive offers via email'),
 
