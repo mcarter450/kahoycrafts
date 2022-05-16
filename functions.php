@@ -16,6 +16,10 @@ add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles', 11, 0);
 
 function kahoy_crafts_styles() {
 
+	// Disable subscription styles
+	wp_dequeue_style( 'wc-blocks-integration' );
+	wp_dequeue_style( 'wcs-checkout' );
+
 	wp_dequeue_style( 'twenty-twenty-one-style' );
 
 	// Use native Html5 players
@@ -32,7 +36,7 @@ function kahoy_crafts_styles() {
 		 is_page('products-feed-generator') or
 		 is_page('gallery') or is_blog() ) {
 
-		wp_dequeue_script('wc-cart-fragments');
+		wp_dequeue_script( 'wc-cart-fragments' );
 	}
 
 	if ( is_front_page() or 
