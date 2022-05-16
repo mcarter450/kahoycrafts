@@ -63,7 +63,8 @@ function purge_block_styles() {
         '../../plugins/woocommerce/assets/css/woocommerce-layout.css',
         '../../plugins/woocommerce/assets/css/woocommerce-smallscreen.css',
         '../../plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-vendors-style.css',
-        '../../plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style.css'
+        '../../plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style.css',
+        'assets/src/fontawesome/css/fontawesome.css'
       ])
       .pipe(purgecss({
           content: ['assets/src/downloads/**/*.html'],
