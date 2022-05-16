@@ -94,13 +94,13 @@ function kahoy_crafts_scripts() {
 		wp_get_theme()->get( 'Version' ),
 		true
 	);
-	wp_enqueue_script(
-		'fontawesome',
-		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js',
-		[],
-		wp_get_theme()->get( 'Version' ),
-		true
-	);
+	// wp_enqueue_script(
+	// 	'fontawesome',
+	// 	'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js',
+	// 	[],
+	// 	wp_get_theme()->get( 'Version' ),
+	// 	true
+	// );
 
 }
 
@@ -130,10 +130,10 @@ add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 		return str_replace( ' src', ' async src', $tag );
 	}
 
-	if ( $handle == 'fontawesome' ) {
+	// if ( $handle == 'fontawesome' ) {
 		
-		return str_replace( ' src', ' data-search-pseudo-elements async src', $tag );
-	}
+	// 	return str_replace( ' src', ' data-search-pseudo-elements async src', $tag );
+	// }
 
 	if ( $handle == 'wpforms' || 
 		 $handle == 'wpforms-validation' || 

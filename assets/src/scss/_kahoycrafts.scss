@@ -216,19 +216,26 @@ div.wpforms-container.newsletter-signup {
         display: none;
     }
 
-    .wpforms-submit:after {
-        display: none;
-    }
-
     .wpforms-form button[type=submit] {
         background-color: var(--global--color-secondary);
         color: var(--button--color-text);
         border-color: var(--global--color-secondary);
 
+        &:after {
+            content: '\f0f3';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 400;
+            color: #fff;
+            margin-left: 0.3em;
+        }
+
         &:hover {
             background-color: var(--button--color-background-active);
             color: var(--button--color-text-hover);
             border-color: var(--global--color-secondary);
+            &:after {
+                color: var(--button--color-text-hover);
+            }
         }
         &:focus {
             outline-offset: -6px;
@@ -237,15 +244,19 @@ div.wpforms-container.newsletter-signup {
 
         &:after {
             content: '\f0f3';
-            font-family: 'Font Awesome 5 Free';
+            font-family: 'Font Awesome 6 Free';
             font-weight: 400;
             color: #fff;
+
+            &:hover {
+                color: var(--button--color-text-hover);
+            }
         }
 
-        .svg-inline--fa {
-            height: 1em;
-            margin-left: .3em;
-        }
+        // .svg-inline--fa {
+        //     height: 1em;
+        //     margin-left: .3em;
+        // }
     }
 
 }
