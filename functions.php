@@ -30,9 +30,18 @@ function kahoy_crafts_styles() {
 		 is_page('owners-bio') or 
 		 is_page('free-shipping-kit') or 
 		 is_page('products-feed-generator') or
+		 is_page('gallery') or is_blog() ) {
+
+		wp_dequeue_script('wc-cart-fragments');
+	}
+
+	if ( is_front_page() or 
+		 is_page('contact') or 
+		 is_page('owners-bio') or 
+		 is_page('free-shipping-kit') or 
+		 is_page('products-feed-generator') or
 		 is_page('gallery') or 
 		 is_blog() or is_woocommerce() ) {
-		//is_account_page() - Bug with layout
 
 		// Load partial wp and wc gutenberg block styles for performance
 		wp_deregister_style( 'wp-block-library' );
@@ -65,7 +74,7 @@ function is_blog () {
  * @return void
  */
 function kahoy_crafts_scripts() {
-	
+
 	wp_enqueue_script(
 		'owl-carousel',
 		get_stylesheet_directory_uri() . '/assets/js/owl.carousel.min.js',
