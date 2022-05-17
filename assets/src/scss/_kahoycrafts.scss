@@ -177,6 +177,58 @@ section {
 
 }
 
+/**
+ * Single blog post
+ */
+.single-post .entry-content {
+
+    .share-links {
+
+        $facebook-color: #1877f2;
+        $pinterest-color: #e60023;
+        $twitter-color: #1DA1F2;
+
+        > a {
+            border-radius: 3px;
+            text-decoration: none;
+            color: #fff;
+            font-size: .8em;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+
+        .facebook {
+            background-color: $facebook-color;
+            &:hover {
+                background-color: lighten($facebook-color, 10%);
+            }
+        }
+
+        .pinterest {
+            background-color: $pinterest-color;
+            &:hover {
+                background-color: lighten($pinterest-color, 10%);
+            }
+        }
+
+        .twitter {
+            background-color: $twitter-color;
+            &:hover {
+                background-color: lighten($twitter-color, 10%);
+            }
+        }
+
+        .svg-icon {
+            fill: #fff;
+            vertical-align: text-bottom;
+            width: 20px;
+            height: 20px;
+        }
+
+    }
+
+}
+
 .wp-block-buttons.shop-buttons {
     margin-top: calc(0.66 * (var(--global--spacing-vertical) * 2));
 
