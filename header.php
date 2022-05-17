@@ -21,8 +21,8 @@
 	<?php if ( is_single() ): ?>
 		<meta property="og:url"                content="<?php echo get_the_permalink(); ?>" />
 		<meta property="og:type"               content="article" />
-		<meta property="og:title"              content="<?php echo esc_html( get_the_title() ); ?>" />
-		<meta property="og:description"        content="<?php echo esc_html( substr(get_the_excerpt(), 255) ); ?>" />
+		<meta property="og:title"              content="<?php echo strip_tags( get_the_title() ); ?>" />
+		<meta property="og:description"        content="<?php echo strip_tags( substr(get_the_excerpt(), 0, 255) ); ?>..." />
 		<?php if ( $og_thumbnail = get_the_post_thumbnail_url() ): ?>
 			<meta property="og:image"              content="<?php echo $og_thumbnail; ?>" />
 		<?php endif; ?>
