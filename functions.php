@@ -13,6 +13,16 @@ function kahoycrafts_load_widget() {
 
 add_action( 'widgets_init', 'kahoycrafts_load_widget' );
 add_action( 'wp_enqueue_scripts', 'kahoy_crafts_styles', 11, 0);
+add_action( 'admin_enqueue_scripts', 'kahoy_crafts_admin_styles', 11, 1);
+
+function kahoy_crafts_admin_styles( $hook ) {
+
+	wp_dequeue_style( 'jetpack-jitm' );
+	wp_dequeue_style( 'jetpack-plugins-page-js' );
+	wp_deregister_script( 'jetpack-jitm' );
+	wp_deregister_script( 'jetpack-plugins-page-js' );
+
+}
 
 function kahoy_crafts_styles() {
 
@@ -367,5 +377,3 @@ add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
 
 //disable just in time messages 
 add_filter( 'jetpack_just_in_time_msgs', '__return_false', 99 );
-
-
