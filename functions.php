@@ -364,3 +364,8 @@ add_filter( 'wp_video_shortcode_override', 'video_shortcode_override', 10, 4);
  */
 //add_filter( 'jetpack_sharing_counts', '__return_false', 99 );
 add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
+
+//disable just in time messages 
+add_filter( 'jetpack_just_in_time_msgs', '__return_false', 99 );
+
+
