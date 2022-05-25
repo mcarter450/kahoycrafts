@@ -135,42 +135,32 @@
 
 .wp-block-code code {
   display: block;
-  white-space: pre-wrap;
+  font-family: inherit;
   overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .wp-block-columns {
   display: flex;
   margin-bottom: 1.75em;
   box-sizing: border-box;
-  flex-wrap: wrap;
+  flex-wrap: wrap !important;
+  align-items: initial !important;
   /**
   * All Columns Alignment
   */
 }
 @media (min-width: 782px) {
   .wp-block-columns {
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
   }
-}
-.wp-block-columns:where(.has-background) {
-  padding: 1.25em 2.375em;
 }
 .wp-block-columns.are-vertically-aligned-top {
   align-items: flex-start;
 }
-@media (max-width: 599px) {
+@media (max-width: 781px) {
   .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
     flex-basis: 100% !important;
-  }
-}
-@media (min-width: 600px) and (max-width: 781px) {
-  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column:not(:only-child) {
-    flex-basis: calc(50% - calc(var(--wp--style--block-gap, 2em) / 2)) !important;
-    flex-grow: 0;
-  }
-  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column:nth-child(even) {
-    margin-left: var(--wp--style--block-gap, 2em);
   }
 }
 @media (min-width: 782px) {
@@ -180,9 +170,6 @@
   }
   .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column[style*=flex-basis] {
     flex-grow: 0;
-  }
-  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column:not(:first-child) {
-    margin-left: var(--wp--style--block-gap, 2em);
   }
 }
 
@@ -225,12 +212,6 @@
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h5 {
-  overflow-wrap: break-word;
-}
 h1.has-background,
 h2.has-background,
 h3.has-background,
@@ -257,11 +238,13 @@ h5.has-background {
   height: auto;
   width: 100%;
 }
+.wp-block-image.alignleft, .wp-block-image.alignright, .wp-block-image.aligncenter,
 .wp-block-image .alignleft,
 .wp-block-image .alignright,
 .wp-block-image .aligncenter {
   display: table;
 }
+.wp-block-image.alignleft > figcaption, .wp-block-image.alignright > figcaption, .wp-block-image.aligncenter > figcaption,
 .wp-block-image .alignleft > figcaption,
 .wp-block-image .alignright > figcaption,
 .wp-block-image .aligncenter > figcaption {
@@ -294,7 +277,8 @@ h5.has-background {
   margin-top: 0.5em;
   margin-bottom: 1em;
 }
-.wp-block-image.is-style-rounded img {
+.wp-block-image.is-style-rounded img,
+.wp-block-image .is-style-rounded img {
   border-radius: 9999px;
 }
 
@@ -304,7 +288,7 @@ h5.has-background {
 
 
 ul {
-  overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 
 ul.has-background {
@@ -335,10 +319,6 @@ ul.has-background {
  * Mobile menu.
  */
 
-p {
-  overflow-wrap: break-word;
-}
-
 p.has-background {
   padding: 1.25em 2.375em;
 }
@@ -352,6 +332,7 @@ p.has-background {
   padding: 3em 0;
   text-align: center;
   overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 .wp-block-pullquote p,
 .wp-block-pullquote blockquote,
@@ -384,29 +365,26 @@ p.has-background {
   text-align: right;
 }
 
-.wp-block-pullquote:not(.is-style-solid-color) {
-  background: none;
-}
-
 .wp-block-pullquote cite {
   color: inherit;
 }
 
 .wp-block-quote {
+  box-sizing: border-box;
   overflow-wrap: break-word;
 }
-.wp-block-quote.is-style-large, .wp-block-quote.is-large {
+.wp-block-quote.is-style-large:not(.is-style-plain), .wp-block-quote.is-large:not(.is-style-plain) {
   margin-bottom: 1em;
   padding: 0 1em;
 }
-.wp-block-quote.is-style-large p, .wp-block-quote.is-large p {
+.wp-block-quote.is-style-large:not(.is-style-plain) p, .wp-block-quote.is-large:not(.is-style-plain) p {
   font-size: 1.5em;
   font-style: italic;
   line-height: 1.6;
 }
-.wp-block-quote.is-style-large cite,
-.wp-block-quote.is-style-large footer, .wp-block-quote.is-large cite,
-.wp-block-quote.is-large footer {
+.wp-block-quote.is-style-large:not(.is-style-plain) cite,
+.wp-block-quote.is-style-large:not(.is-style-plain) footer, .wp-block-quote.is-large:not(.is-style-plain) cite,
+.wp-block-quote.is-large:not(.is-style-plain) footer {
   font-size: 1.125em;
   text-align: right;
 }
@@ -418,9 +396,6 @@ p.has-background {
 .wp-block-separator {
   border-top: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
-}
-.wp-block-separator.is-style-wide {
-  border-bottom-width: 1px;
 }
 .wp-block-separator.is-style-dots {
   background: none !important;
@@ -538,6 +513,25 @@ p.has-background {
   top: 5px;
   width: auto;
   z-index: 100000;
+}
+
+/**
+ * The following provide a simple means of applying a default border style when
+ * a user first makes a selection in the border block support panel.
+ * This prevents issues such as where the user could set a border width
+ * and see no border due there being no border style set.
+ *
+ * This is intended to be removed once intelligent defaults can be set while
+ * making border selections via the block support.
+ *
+ * See: https://github.com/WordPress/gutenberg/pull/33743
+ */
+html :where(.has-border-color) {
+  border-style: solid;
+}
+
+html :where([style*="border-width"]) {
+  border-style: solid;
 }
 
 /**
